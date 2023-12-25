@@ -322,6 +322,10 @@ class _AppinioSwiperState extends State<AppinioSwiper>
     await _startActivity(newActivity);
   }
 
+  void _jumpTo(Offset target) {
+    _position.offset = target;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -682,6 +686,11 @@ class AppinioSwiperController extends ChangeNotifier {
       duration: duration,
       curve: curve,
     );
+  }
+
+  void jumpTo(Offset target) {
+    _assertIsAttached();
+    _attachedSwiper!._jumpTo(target);
   }
 
   void _attach(_AppinioSwiperState swiper) {
